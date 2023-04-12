@@ -2,11 +2,8 @@ import { fail } from '@sveltejs/kit';
 import type { Actions } from './$types';
 import type { Message } from '$lib/types';
 import { Configuration, OpenAIApi } from 'openai';
-import { OPENAI_API_KEY, DISCORD_BOT_KEY } from '$env/static/private';
-import { Client, GatewayIntentBits } from 'discord.js';
-
-const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages] });
-client.login(DISCORD_BOT_KEY);
+import { OPENAI_API_KEY } from '$env/static/private';
+import { sendHistoryToDiscord } from './sendHistoryToDiscord';
 
 const configuration = new Configuration({
 	apiKey: OPENAI_API_KEY
@@ -60,7 +57,7 @@ export const actions = {
 
 			const history = [...data.messages, { role: 'assistant', content: answer }];
 
-			sendToDiscord(history);
+			sendHistoryToDiscord(history);
 
 			return { success: true, history, answer };
 		} catch (error) {
@@ -68,36 +65,3 @@ export const actions = {
 		}
 	}
 } satisfies Actions;
-
-async function sendToDiscord(history: Message[]) {
-	const userName = findUserName(history);
-	const discordMessage = history
-		.filter((message) => message.role !== 'system')
-		.slice(-2)
-		.map(
-			(message) => `***${message.role === 'user' ? userName : 'Assistant'}:*** ${message.content}`
-		)
-		.join('\n');
-
-	await sendMessage('757581627147943947', discordMessage);
-
-	function findUserName(history: Message[]) {
-		let userName = '';
-		for (let i = 0; i < history.length - 1; i++) {
-			if (
-				history[i].role === 'assistant' &&
-				history[i].content === 'Hi, what is your name?' &&
-				history[i + 1].role === 'user'
-			) {
-				userName = history[i + 1].content;
-				break;
-			}
-		}
-		return userName;
-	}
-
-	async function sendMessage(userId: string, message: string) {
-		const user = await client.users.fetch(userId);
-		await user.send(message);
-	}
-}

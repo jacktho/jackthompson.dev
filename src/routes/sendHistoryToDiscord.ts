@@ -1,10 +1,10 @@
 import type { Message } from '$lib/types';
 import getDiscordClientInstance from '$lib/discordClient';
+import { DISCORD_BOT_KEY } from '$env/static/private';
 
-const DISCORD_BOT_KEY = 'your-discord-bot-key';
 const discordClient = getDiscordClientInstance(DISCORD_BOT_KEY);
 
-export async function sendToHistoryDiscord(history: Message[]) {
+export async function sendHistoryToDiscord(history: Message[]) {
 	const userName = findUserName(history);
 	const discordMessage = history
 		.filter((message) => message.role !== 'system')
