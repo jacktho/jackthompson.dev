@@ -1,41 +1,57 @@
 <script lang="ts">
 	import type { ActionData } from './$types';
 	import type { Message } from '$lib/types';
-	import { enhance } from '$app/forms';
+	import Typewriter from 'svelte-typewriter';
+	import character from '$lib/images/character.png';
+
+	import Reply from './Reply.svelte';
 
 	export let form: ActionData;
 
 	let history: Message[] = [];
 	$: history = (form?.history as Message[]) || [];
+
+	let messageToShow: string =
+		form?.answer ||
+		`Hello, my name is Jack! It's a pleasure to meet you. May I have the honor of knowing your name?`;
 </script>
 
-<div>
-	<head>
-		<title>OpenAI Quickstart</title>
-	</head>
+<div class="flex flex-col p-3 justify-center items-center radial-gradient">
+	<div class="flex gap-x-6 w-full max-w-2xl items-center">
+		<img src={character} alt="character" class="h-16 md:h-32" />
+		<p class="md:text-lg lg:text-xl text-amber-500 grow">
+			<Typewriter --cursor-color="rgb(245, 158, 11)" keepCursorOnFinish={true}>
+				{messageToShow}
+			</Typewriter>
+		</p>
+	</div>
 
-	<main class="container mx-auto">
-		<h3 class="text-center text-xl font-bold mb-4">
-			{form?.answer || 'Hi, what is your name?'}
-		</h3>
-		<form
-			class="text-center"
-			method="POST"
-			use:enhance={({ data }) => {
-				data.append('history', JSON.stringify(history));
-			}}
-		>
-			<input
-				type="text"
-				name="message"
-				placeholder="Enter a prompt"
-				class="border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:border-blue-500"
-			/>
-			<input
-				type="submit"
-				value="Submit"
-				class="bg-blue-500 text-white px-4 py-2 rounded-md mt-4 hover:bg-blue-600 cursor-pointer"
-			/>
-		</form>
-	</main>
+	<Reply {history} on:submit={() => (messageToShow = '')} />
 </div>
+
+<style lang="postcss">
+	:global(html) {
+		background-color: theme(colors.black);
+	}
+
+	.radial-gradient {
+		background: radial-gradient(
+			50% 55% at 50% 50%,
+			rgba(162, 58, 0, 0.3) 0%,
+			rgba(255, 101, 15, 0) 100%
+		);
+	}
+
+	.text-container {
+		position: relative;
+		max-height: calc(100vh - 400px);
+		overflow-y: auto;
+		padding: 0 1rem;
+	}
+
+	@media (max-height: 500px) {
+		.text-container {
+			max-height: 110px;
+		}
+	}
+</style>
