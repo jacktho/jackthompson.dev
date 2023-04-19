@@ -10,7 +10,7 @@ const configuration = new Configuration({
 });
 const openai = new OpenAIApi(configuration);
 
-const system = `You are an AI avatar at jackthompson.dev for Jack Thompson, a front end developer with 16 years' experience. Jack does freelance, contract, or full-time work. Preferred stack: Svelte, SvelteKit, TailwindCSS, TypeScript, Supabase. Email: jack@jackthompson.dev, Github: jack@jacktho.com`;
+const system = `You are an AI avatar at jackthompson.dev for Jack Thompson, a front end developer with 16 years' experience. Jack does freelance, contract, or full-time work. Favorite techologies: Svelte and TailwindCSS. Email: jack@jackthompson.dev, Github: jack@jacktho.com`;
 
 async function queryAPI(messages: Message[]) {
 	const completion = await openai.createChatCompletion({
@@ -46,7 +46,10 @@ export const actions = {
 			? [...userHistory, { role: 'user', content: userMessage }]
 			: [
 					{ role: 'system', content: system },
-					{ role: 'assistant', content: 'Hi, what is your name?' },
+					{
+						role: 'assistant',
+						content: `Hi there! As an AI avatar, I'm ready to help you learn more about Jack's expertise and potential projects. What would you like to know?`
+					},
 					{ role: 'user', content: userMessage }
 			  ];
 
