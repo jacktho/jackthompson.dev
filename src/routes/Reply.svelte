@@ -1,8 +1,10 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { enhance } from '$app/forms';
 	import type { Message } from '$lib/types';
 
 	export let history: Message[] = [];
+	export let isTyping = false;
 
 	let textarea: HTMLTextAreaElement;
 	let form: HTMLFormElement;
@@ -21,6 +23,17 @@
 
 <form
 	bind:this={form}
+	use:enhance={({ cancel }) => {
+		if (isTyping) {
+			cancel();
+		} else {
+			isTyping = true;
+		}
+
+		return async ({ update }) => {
+			await update();
+		};
+	}}
 	on:submit
 	class="w-full max-w-2xl flex gap-y-3 md:gap-y-6 flex-col text-center bg-amber-800/25 mt-4 p-3 md:p-6 rounded-lg shadow-lg shadow-black/75 border-t border-amber-900"
 	method="POST"
@@ -42,7 +55,8 @@
 	</div>
 	<button
 		type="submit"
-		class="place-self-end rounded-md bg-black/10 px-5 py-3 md:text-xl text-sm border-t active:border-t-0 active:border-b active:border-amber-900 border-amber-900 text-amber-600 shadow-sm hover:shadow shadow-black/75 hover:shadow-black/75 active:shadow-inner active:shadow-black-75"
+		disabled={isTyping}
+		class="disabled:invisible place-self-end rounded-md bg-black/10 px-5 py-3 md:text-xl text-sm border-t active:border-t-0 active:border-b active:border-amber-900 border-amber-900 text-amber-600 shadow-sm hover:shadow shadow-black/75 hover:shadow-black/75 active:shadow-inner active:shadow-black-75"
 		>Reply</button
 	>
 </form>

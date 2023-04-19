@@ -10,23 +10,33 @@
 
 	let history: Message[] = [];
 	$: history = (form?.history as Message[]) || [];
+	let isTyping = false;
 
-	let messageToShow: string =
+	$: messageToShow =
 		form?.answer ||
-		`Hello, my name is Jack! It's a pleasure to meet you. May I have the honor of knowing your name?`;
+		`Hi there! As an AI avatar, I'm ready to help you learn more about Jack's expertise and potential projects. What would you like to know?`;
 </script>
 
 <div class="flex flex-col p-3 justify-center items-center radial-gradient">
 	<div class="flex gap-x-6 w-full max-w-2xl items-center">
 		<img src={character} alt="character" class="h-16 md:h-32" />
 		<p class="md:text-lg lg:text-xl text-amber-500 grow">
-			<Typewriter --cursor-color="rgb(245, 158, 11)" keepCursorOnFinish={true}>
+			<Typewriter
+				on:done={() => {
+					// The Typewriter animation fires when messageToShow is set to an empty string during submit creating a false positive
+					if (messageToShow) {
+						isTyping = false;
+					}
+				}}
+				--cursor-color="rgb(245, 158, 11)"
+				keepCursorOnFinish={true}
+			>
 				{messageToShow}
 			</Typewriter>
 		</p>
 	</div>
 
-	<Reply {history} on:submit={() => (messageToShow = '')} />
+	<Reply bind:isTyping {history} on:submit={() => (messageToShow = '')} />
 </div>
 
 <style lang="postcss">
@@ -40,18 +50,5 @@
 			rgba(162, 58, 0, 0.3) 0%,
 			rgba(255, 101, 15, 0) 100%
 		);
-	}
-
-	.text-container {
-		position: relative;
-		max-height: calc(100vh - 400px);
-		overflow-y: auto;
-		padding: 0 1rem;
-	}
-
-	@media (max-height: 500px) {
-		.text-container {
-			max-height: 110px;
-		}
 	}
 </style>
