@@ -1,13 +1,19 @@
 <script lang="ts">
 	import bulb from '$lib/images/light-bulb.png';
 	import logo from '$lib/images/jt-logo.png';
-	import Menu from '$lib/images/Menu.svelte';
+	import Navbar from '$lib/components/Navbar.svelte';
+
+	const links = [
+		{ name: 'Home', href: '/' },
+		{ name: 'About', href: 'about' },
+		{ name: 'Blog', href: 'blog' }
+	];
 </script>
 
 <header class="flex items-center justify-between h-20">
 	<img src={logo} alt="logo" class="w-20 py-3" />
 	<img src={bulb} alt="light bulb" class="vertical-size" />
-	<Menu />
+	<Navbar {links} />
 </header>
 
 <style lang="postcss">
@@ -25,7 +31,7 @@
 
 	@media (min-height: 1000px) and (min-width: 350px) {
 		.vertical-size {
-			@apply h-64;
+			@apply h-56;
 		}
 	}
 </style>
