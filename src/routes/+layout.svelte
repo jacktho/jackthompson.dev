@@ -11,3 +11,9 @@
 	</main>
 	<Footer />
 </div>
+
+<style lang="postcss">
+	:global(html) {
+		background-color: theme(colors.black);
+	}
+</style>
