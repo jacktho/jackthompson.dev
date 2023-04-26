@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { page } from '$app/stores';
 	import { fade } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
 	import Menu from '$lib/images/Menu.svelte';
@@ -19,6 +20,7 @@
 			<a
 				href={item.href}
 				class="block rounded-lg px-3 py-2 text-base font-semibold leading-7 hover:bg-amber-950"
+				class:text-amber-600={$page.url.pathname === item.href}
 			>
 				{item.name}
 			</a>
@@ -28,7 +30,7 @@
 	{#if mobileMenuOpen}
 		<!-- Mobile menu, show/hide based on menu open state. -->
 		<div
-			transition:fade={{ duration: 1000, delay: 200, easing: quintOut }}
+			transition:fade={{ duration: 500, delay: 100, easing: quintOut }}
 			class="md:hidden"
 			role="dialog"
 			aria-modal="true"
@@ -65,6 +67,7 @@
 									href={item.href}
 									on:click={() => toggleMenu()}
 									class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 hover:bg-amber-950"
+									class:text-amber-600={$page.url.pathname === item.href}
 								>
 									{item.name}
 								</a>
