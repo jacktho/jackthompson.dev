@@ -26,7 +26,7 @@
 			title="jackthompson.net"
 			url="https://jackthompson.net"
 			description={`
-My personal website, I wanted to play with AI technology so I integrated OpenAI's GPT to create a pseudo AI Avatar capable of answering visitors' questions in real-time. I'm currently utilizing 'gpt-3.5-turbo' and eagerly await the opportunity to upgrade to GPT-4 once it becomes available through the API. I found the API remarkably user-friendly and plan to explore more applications in the future. While my attempt to draw web design inspiration from Midjourney was not entirely successful, it did provide some interesting imagery I used on this website. I plan to continue to add to this site including adding a blog.
+My personal website, I wanted to play with AI technology so I integrated OpenAI's GPT to create a pseudo AI Avatar capable of answering visitors' questions in real-time. I'm currently utilizing 'gpt-3.5-turbo' and eagerly await the opportunity to upgrade to GPT-4 once it becomes available through the API. Also, send the conversations with the bot to Discord using their API. I found the API remarkably user-friendly and plan to explore more applications in the future. While my attempt to draw web design inspiration from Midjourney was not entirely successful, it did provide some interesting imagery I used on this website. I plan to continue to add to this site including adding a blog.
 `}
 			technologies={[
 				{ name: 'Svelte', href: 'https://svelte.dev' },
@@ -34,6 +34,7 @@ My personal website, I wanted to play with AI technology so I integrated OpenAI'
 				{ name: 'Tailwind CSS', href: 'https://tailwindcss.com' },
 				{ name: 'OpenAI', href: 'https://platform.openai.com/docs/api-reference/chat' },
 				{ name: 'Midjourney', href: 'https://midjourney.com' },
+				{ name: 'Discord API', href: 'https://discord.com/developers/docs/intro' },
 				{ name: 'Vercel', href: 'https://vercel.com' }
 			]}
 		/>
