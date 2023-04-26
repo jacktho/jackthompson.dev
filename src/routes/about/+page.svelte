@@ -1,7 +1,7 @@
 <script lang="ts">
 </script>
 
-<div class="px-6 py-32 lg:px-8">
+<div class="px-6 lg:px-8">
 	<div class="mx-auto max-w-3xl text-base leading-7 text-gray-200">
 		<p class="text-base font-semibold leading-7 text-orange-600">Jack Thompson</p>
 		<h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-100 sm:text-4xl">

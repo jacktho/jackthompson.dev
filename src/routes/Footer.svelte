@@ -1,4 +1,4 @@
-<footer class="text-xs leading-5 h-20 text-amber-700 flex justify-between items-center">
+<footer class="text-xs leading-5 h-20 text-amber-700 flex justify-between items-center mt-8">
 	<p class="">
 		Copyright &copy; {new Date().getFullYear()} Jack D. Thompson. All rights reserved.
 	</p>

@@ -40,10 +40,6 @@
 </div>
 
 <style lang="postcss">
-	:global(html) {
-		background-color: theme(colors.black);
-	}
-
 	.radial-gradient {
 		background: radial-gradient(
 			50% 55% at 50% 50%,
