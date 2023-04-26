@@ -41,7 +41,7 @@
 				<div class="flex items-center justify-between">
 					<a href="/" on:click={() => toggleMenu()} class="-m-1.5 p-1.5">
 						<span class="sr-only">Jack Thompson Logo</span>
-						<img class="w-8 w-auto" src={logo} alt="Jack Thompson's logo" />
+						<img class="w-8" src={logo} alt="Jack Thompson's logo" />
 					</a>
 					<button type="button" class="-m-2.5 rounded-md p-2.5" on:click={() => toggleMenu()}>
 						<span class="sr-only">Close menu</span>
