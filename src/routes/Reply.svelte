@@ -1,17 +1,11 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
 	import { enhance } from '$app/forms';
 	import type { Message } from '$lib/types';
 
 	export let history: Message[] = [];
 	export let isTyping = false;
 
-	let textarea: HTMLTextAreaElement;
 	let form: HTMLFormElement;
-
-	onMount(() => {
-		textarea.focus();
-	});
 
 	const handleKeyDown = (event: KeyboardEvent) => {
 		if (event.key === 'Enter' && event.ctrlKey) {
@@ -43,7 +37,6 @@
 		<div>
 			<textarea
 				on:keydown={handleKeyDown}
-				bind:this={textarea}
 				rows="4"
 				name="message"
 				id="message"
