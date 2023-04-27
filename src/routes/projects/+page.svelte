@@ -13,9 +13,8 @@
 		>
 			<h2>Project Log</h2>
 			<p>
-				Here are some of the things I've been working on that are worth noting. I may or may not add
-				more prior work in the future, but I will continue to update this page with new projects
-				going forward.
+				Here are some of the recent noteworthy things I've been working on and I will continue to
+				update this page with new projects going forward.
 			</p>
 		</div>
 	</div>
