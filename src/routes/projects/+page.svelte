@@ -76,7 +76,7 @@ The Instant Term Quote App, developed for Peach Insurance Services, allows clien
 			image={peachApp}
 			datetime="2022-08-26"
 			title="PeachApp"
-			url="https://app.peachinsurance.com"
+			url="https://app.peachinsurance.net"
 			description={`
 <p>A custom-built insurance application I developed for Peach Insurance Services to streamline the process of collecting client information. This enables the company to efficiently determine the best carriers for clients' Life, Disability, Long Term Care Insurance, and Annuities needs.</p>
 <p>With a user-friendly interface, PeachApp intelligently adjusts its questions based on client input, minimizing redundancy when clients require multiple products. The app simplifies the insurance selection process and fosters collaboration between Peach Insurance Services and fee-only financial advisors, enhancing the overall client experience. A web application for insurance companies to manage their clients and policies.</p>
