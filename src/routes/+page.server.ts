@@ -63,7 +63,7 @@ export const actions = {
 
 			const history = [...data.messages, { role: 'assistant', content: answer }];
 
-			sendHistoryToDiscord(history);
+			await sendHistoryToDiscord(history);
 
 			return { success: true, history, answer };
 		} catch (error) {
